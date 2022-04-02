@@ -118,16 +118,5 @@ describe("Voting contract", function () {
 			// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 			//await hardhatVoting.wait(5);
 		});
-	});	
-
-	it("retrievCommission()", async function() {
-		await hardhatVoting.addCandidate(addr1.address);
-		await hardhatVoting.launchVoting();
-		hardhatVoting.vote(1 , {value: ethers.utils.parseEther("0.01")});
-		//expect (await hardhatVoting.balanceOf(owner.address)).to.equal(ethers.utils.parseEther("0.01"));
-		expect (await waffle.provider.getBalance(hardhatVoting.address)).to.equal(ethers.utils.parseEther("0.01"));
-				
-	});
-
-	
+	});		
 });
