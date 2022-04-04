@@ -40,11 +40,6 @@ contract Voting {
         _;
     }
 
-    // modifier cannotVote {
-    //     require (hasLaunched == true && block.timestamp > endDate );
-    //     _;
-    // }
-
     constructor () {
         owner = payable(msg.sender);
     }
@@ -103,22 +98,12 @@ contract Voting {
         return candidates[winnerId];
 	}
 
-    // function getNumVotes (uint id) public view returns (uint){
-	// 	require (hasLaunched == true, "Voting must be launched");
-    //     require (id < candidates.length, "Provided ID does not belong to any of the registred candidates");
-    //     return numVotes[id];
-    // }
-
     //commission can be retrieved after the voting is closed and the prize is sent to the winner
     function takeCommission () public payable onlyOwner {
 		require (hasLaunched == true, "owner can take commission only after the vauting launch");
 		require (isOpen == false, "cannot take commission while voting is open");
         owner.transfer(address(this).balance);
     }
-
-    // function getOngoingBalance () public view returns (uint) {
-    //     return address(this).balance;
-    // }
 
     function isVotingOpen () public view returns (string memory) {
         if(hasLaunched && block.timestamp < endDate)
