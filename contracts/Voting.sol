@@ -5,7 +5,7 @@ contract VotingFactory {
     Voting[] public deployedCampaigns;
 
     function createCampaign() public {
-        Voting newCampaign = new Voting();
+        Voting newCampaign = new Voting(msg.sender);
         deployedCampaigns.push(newCampaign);
     }
 
@@ -40,8 +40,8 @@ contract Voting {
         _;
     }
 
-    constructor () {
-        owner = payable(msg.sender);
+    constructor (address creator) {
+        owner = payable(creator);
     }
 
     function addCandidate (address payable _wallet) external onlyOwner {
