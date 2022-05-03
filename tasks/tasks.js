@@ -1,7 +1,5 @@
 //---------------------TASKS------------------------------
 
-//const { task } = require("hardhat/config");
-
 task("addVoting", "Deploys new Voting contract to the testnet")
 	.addParam("address", "VotingFactory address")
 	.setAction(async (taskArgs) => {		
